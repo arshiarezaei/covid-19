@@ -1,8 +1,28 @@
-landa = 5; % Patient Arrive Rate
-receptionRate = 3; % Reception Service Rate
-alfa = 20; % Patient Tiredness Rate
+clc
+clear all
+
+fid = fopen('simulation_parameters.txt');
+basicParameters = str2num(fgetl(fid));
+numberOfRoom = basicParameters(1);
+landa = basicParameters(2); % Patient Arrive Rate
+alfa = basicParameters(3); % Patient Tiredness Rate
+receptionRate = basicParameters(4); % Reception Service Rate
+
 numberOfPatient = 10000; 
-numberOfRoom = 4;
+tline = fgetl(fid);
+doctorCuringRate = cell(numberOfRoom,1);
+for i=[1:numberOfRoom]
+    if ischar(tline)
+        doctorCuringRate(i,1) =  {[str2num(tline)]};
+    
+    else
+        break;
+    end
+    tline = fgetl(fid);
+end
+
+
+%numberOfRoom = 4;
 numberOfDoctor = 3; % In Each Room
 doctorRate = 3*ones(M,m); % Doctor Curing Rate
 
