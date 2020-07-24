@@ -13,7 +13,7 @@ tline = fgetl(fid);
 doctorCuringRate = cell(numberOfRoom,1);
 for i=[1:numberOfRoom]
     if ischar(tline)
-        doctorCuringRate(i,1) =  {[str2num(tline)]};
+        doctorCuringRate(i,1) =  {str2num(tline)]};
     
     else
         break;
@@ -23,7 +23,7 @@ end
 
 
 %numberOfRoom = 4;
-numberOfDoctor = 3; % In Each Room
+numberOfDoctor = 3; % In Each Room 
 doctorRate = 3*ones(M,m); % Doctor Curing Rate
 
 queue1NumberOfPatients = zeros(1,numberOfPatient); % Number Of Patients In Reception Queue Everytime
