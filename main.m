@@ -13,7 +13,7 @@ tline = fgetl(fid);
 doctorCuringRate = cell(numberOfRoom,1);
 for i=[1:numberOfRoom]
     if ischar(tline)
-        doctorCuringRate(i,1) =  {str2num(tline)]};
+        doctorCuringRate(i,1) =  {str2num(tline)};
     
     else
         break;
@@ -22,7 +22,8 @@ for i=[1:numberOfRoom]
 end
 
 
-%numberOfRoom = 4;
+M = numberOfRoom;
+m = 3;
 numberOfDoctor = 3; % In Each Room 
 doctorRate = 3*ones(M,m); % Doctor Curing Rate
 
@@ -105,7 +106,7 @@ for t = 1:100*numberOfPatient
     %Inter to Queue1
     if(lastPositivePatientNumber < numberOfPatient && lastNegativePatientNumber < numberOfPatient)
         C1 = max(lastPositivePatientNumber,lastNegativePatientNumber)+1;
-        if(t == Q1_Arrive(C1))   
+        if(t == queue1Arrive(C1))   
             if(coronaTest(C1) == 1)
                 push(queue1Positive,C1);
                 lastPositivePatientNumber = C1;
@@ -131,10 +132,10 @@ for t = 1:100*numberOfPatient
     
     S2 = size(queue1Negative);
     for h = 1:S2
-        if((t - Q1_Arrive(front(queue1Negative))) >= alfa )
+        if((t - queue1Arrive(front(queue1Negative))) >= alfa )
             exitTime(front(queue1Negative)) = t;
             Counter = Counter + 1;
-            queue1Wait(front(queue1Negative)) = t - Q1_Arrive(front(queue1Negative));
+            queue1Wait(front(queue1Negative)) = t - queue1Arrive(front(queue1Negative));
             pop(queue1Negative);
         else
             break;
@@ -148,12 +149,12 @@ for t = 1:100*numberOfPatient
             reception = front(queue1Positive);
             pop(queue1Positive);
             time1 = serviceTime(reception) + t ;
-            queue1Wait(reception) = t - Q1_Arrive(reception);
+            queue1Wait(reception) = t - queue1Arrive(reception);
         elseif(empty(queue1Negative) == 0)
             reception = front(queue1Negative);
             pop(queue1Negative);
             time1 = serviceTime(reception) + t ;
-            queue1Wait(reception) = t - Q1_Arrive(reception);
+            queue1Wait(reception) = t - queue1Arrive(reception);
         end
             F1 = 0;
     else
