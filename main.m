@@ -18,7 +18,7 @@ for i=[1:numberOfRoom]
     else
         break;
     end
-    tline = fgetl(fid);
+    tline = fgetl(fid)
 end
 
 % to mehrdad: replace doctor rate with doctor curring rate 
@@ -98,7 +98,7 @@ queue2Lentgh = zeros(1,M); % Everytime
  assigned_doctor = cell(numberOfRoom,1);
  for i=[1:numberOfRoom]
      len = length(doctorCuringRate{i,1});
-      assigned_doctor{i,1} = repelem(0,len+1);
+      assigned_doctor{i,1} = repelem(0,len);
  end
 %%
 
