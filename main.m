@@ -83,7 +83,15 @@ else
     lastPositivePatientNumber = 0;
 end
 %/ 
-
+%{
+%{
+ timer2 = cell(numberOfRoom,1);
+ for i=[1:numberOfRoom]
+     len = length(doctorCuringRate{i,1});
+      timer2{i,1} = repelem(0,len);
+ end
+%} 
+%}
 Counter = 0;
 time1 = 0; % A Variable That Changes For Each Patient From Service Time To Zero 
 time2 = zeros(M,m); % A Variable That Changes For Each Patient From Doctor Curing To Zero
