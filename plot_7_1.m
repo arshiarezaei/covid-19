@@ -19,17 +19,24 @@ end
 
 figure
 hist(response_time);
- 
-legend('total response time')
+title('response time of all patients')
+xlabel('response time')
+ylabel('number of patinets')
  
 figure
 hist(positive_rosponse_time);
+title('response time of patients with + corona test')
+xlabel('response time')
+ylabel('number of patinets')
  
-legend('positive response time')
+
+
 figure
 hist(negative_rosponse_time);
- 
-legend('negative response time')
+title('response time of patients with - corona test')
+xlabel('response time')
+ylabel('number of patinets')
+
  
 % plot(negative_rosponse_time,unique(negativee_rosponse_time));
 % hold;
