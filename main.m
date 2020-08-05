@@ -146,8 +146,8 @@ for t = 1:1000*numberOfPatient
     
     %Computing lentgh of queues
     queue1Lentgh(t) = size(queue1Positive) + size(queue1Negative);
-    queue1Positive(t) = length(queue1Positive);
-    queue1Negative(t) = length(queue1Negative);
+    queue1Positive(t) = queue1Positive;
+    queue1Negative(t) = queue1Negative;
     
     for i = 1:numberOfRoom
         queue2Lentgh(i) = queue2Lentgh(i) + queue2NumberOfPatient(i);
@@ -160,9 +160,11 @@ for t = 1:1000*numberOfPatient
         if(t == queue1Arrive(C1))   
             if(coronaTest(C1) == 1)
                 push(queue1Positive,C1);
+                queue1Positive = queue1Positive + 1;
                 lastPositivePatientNumber = C1;
             else
                 push(queue1Negative,C1);
+                queue1Negative = queue1Negative-1;
                 lastNegativePatientNumber = C1;
             end  
         end
@@ -199,6 +201,7 @@ for t = 1:1000*numberOfPatient
         if(empty(queue1Positive) == 0)
             reception = front(queue1Positive);
             pop(queue1Positive);
+            queue1Positive = queue1Positive - 1;
             time1 = serviceTime(reception) ;
             queue1Wait(reception) = t-1 - queue1Arrive(reception);
             if(t==queue1Arrive(reception))
@@ -208,6 +211,7 @@ for t = 1:1000*numberOfPatient
         elseif(empty(queue1Negative) == 0)
             reception = front(queue1Negative);
             pop(queue1Negative);
+            queue1Negative = queue1Negative -1;
             time1 = serviceTime(reception) ;
             queue1Wait(reception) = t-1 - queue1Arrive(reception);
             if(t==queue1Arrive(reception))
