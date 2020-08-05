@@ -8,7 +8,7 @@ landa = basicParameters(2); % Patient Arrive Rate
 alfa = basicParameters(3); % Patient Tiredness Rate
 receptionRate = basicParameters(4); % Reception Service Rate
 
-numberOfPatient = 1000; 
+numberOfPatient = 10000000; 
 tline = fgetl(fid);
 doctorCuringRate = cell(numberOfRoom,1);
 for i=[1:numberOfRoom]
@@ -101,6 +101,8 @@ assigned_doctor = zeros(M,m); % Number(ID) Of Patient That Work With Each Doctor
 F1 = 1;
 F2 = 0;
 queue1Lentgh = []; % Everytime
+queue1PositiveLentgh=[];
+queue1NgativeLentgh=[];
 queue2Lentgh = zeros(1,M); % Everytime
 
 %numberOfPatientsinSystem = [];
@@ -115,8 +117,8 @@ queue2Lentgh = zeros(1,M); % Everytime
 
 
  
- disp(assigned_doctor);
- disp(timer2);
+ %disp(assigned_doctor);
+% disp(timer2);
 for t = 1:1000*numberOfPatient
     %Computing the number of patients in hospital
     %positive_numberOfPatientsinSystem(t) = size(queue1Positive);
@@ -144,6 +146,8 @@ for t = 1:1000*numberOfPatient
     
     %Computing lentgh of queues
     queue1Lentgh(t) = size(queue1Positive) + size(queue1Negative);
+    queue1Positive(t) = length(queue1Positive);
+    queue1Negative(t) = 
     for i = 1:numberOfRoom
         queue2Lentgh(i) = queue2Lentgh(i) + queue2NumberOfPatient(i);
     end
@@ -459,14 +463,6 @@ plot_7_2(queue1Wait,queue2Wait,coronaTest);
 %hist(negative_numberOfPatientsinSystem);
 %legend('- corona number Of Patients in System');
 %Q7-5
-
-figure
-hist(queue1Lentgh);
- 
-legend('reception queue lentgh')
-%/
-disp(Counter);
-
 
 %disp(serviceTime);
 %disp(queue1Arrive);
