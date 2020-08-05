@@ -147,7 +147,8 @@ for t = 1:1000*numberOfPatient
     %Computing lentgh of queues
     queue1Lentgh(t) = size(queue1Positive) + size(queue1Negative);
     queue1Positive(t) = length(queue1Positive);
-    queue1Negative(t) = 
+    queue1Negative(t) = length(queue1Negative);
+    
     for i = 1:numberOfRoom
         queue2Lentgh(i) = queue2Lentgh(i) + queue2NumberOfPatient(i);
     end
